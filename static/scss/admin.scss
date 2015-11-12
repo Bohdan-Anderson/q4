@@ -1,0 +1,169 @@
+@import "settings";
+
+h1,h2,h3,h4{
+	color: $blue;
+}
+h1{
+	padding-top: 1rem;
+}
+
+#header,.breadcrumbs{
+	display: none;
+}
+
+input[value="Save"].default{
+	background-image: none;
+	background-color: $white;
+	color: $blue;
+	// text-transform: uppercase;
+	border: solid 1px $blue;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	&:hover{
+		background-color: #f8da69;
+	}
+}
+.submit-row input[name="_addanother"] input[name="_continue"]{
+
+}
+
+
+.model-generalsite,.model-invoice{
+	// input[value="Save"]{
+	// 	display: none;
+	// }
+	.object-tools{
+		display: none;
+	}
+}
+
+
+
+
+
+.module h2, .module caption, .inline-group h2,fieldset.collapsed h2{
+	background-color: $blue;
+	background-image: none;
+	color: $white;
+	a{
+		color: $yellow;
+	}
+}
+
+.inline-group,.submit-row,.module,.inline-group div.add-row, .inline-group .tabular tr.add-row td,thead th, tfoot td{
+	border: none;
+	background-image:none;
+	background-color: $white;
+	color: $blue;
+}
+.model-invoice .module .dynamic-invoice_line_item_set .related-widget-wrapper-link{
+	display: none;
+}
+.related-widget-wrapper > select{
+	max-width: 200px;
+}
+
+
+.vLargeTextField{
+	height: 6rem;
+}
+
+
+.dynamic-social_media_set{
+	.vTextField{
+		width: 100px;
+	}
+}
+
+.admin_image img{
+	max-height: 200px;
+}
+
+.selector {
+	width: 657px;
+	select{
+		width: 310px;
+	}
+	.selector-available,.selector-chosen{
+		width: 310px;
+		input{
+			width: 270px;
+		}
+	}
+}
+
+.model-generalsite{
+	.aligned label{
+		width: 9rem;
+	}
+	.selector .selector-filter label{
+		width: 19px;
+	}
+}
+.field-MEDIA_URL{
+	display: none!important;
+}
+
+#click_button_image{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 200px;
+	height: 200px;
+	text-align: right;
+	img{
+		width: 100%;
+	}
+}
+.form-row{
+	padding-bottom: 1rem;
+}
+
+.model-menu_item_section table{
+	thead{
+		display: none;
+	}
+}
+.inline-group#Menu_item_section_items-group .tabular td.original{
+	display: none;
+}
+.inline-group#Menu_item_section_items-group .tabular tr.has_original td{
+	padding-top: 0.5em;
+}
+
+
+.model-menu_item_section #container table thead{
+	display: table-row-group;
+}
+.model-menu_item_section tr td{
+	padding-top: 0;
+	width: auto;
+	&.original{
+		// display: none;
+		opacity: 0;
+	}
+	
+	input {
+		width: 7rem;
+	}
+	textarea{
+		width: 14rem;
+	}
+
+	&.field-title input{
+		width: 6rem;
+	}
+	&.field-price input, &.field-alcohol_by_volume input, &.field-international_bitterness_units input{
+		width: 3rem;
+	}
+	&.field-order input{
+		width: 2rem;
+	}
+
+}
+
+
+
+
+
+

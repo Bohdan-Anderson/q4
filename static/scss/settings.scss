@@ -1,0 +1,167 @@
+
+$small: 480px;
+$medium: 768px;
+$inbetween: 900px;
+$large: 1120px;
+
+$min: min-width;
+$max: max-width;
+
+$white: #fff;
+$black: #222;
+
+
+$border_overlay_width: 30px;
+$border_overlay_width_medium: 15px;
+
+
+@function R2P($size) {
+	$pxSize: $size * 16;
+	@return $pxSize + px;
+}
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+	@if $constraint == $min {
+		@media screen and ($min: $viewport1) {
+			@content;
+		}
+	} @else if $constraint == $max {
+		@media screen and ($max: $viewport1) {
+			@content;
+		}
+	} @else {
+		@media screen and ($min: $viewport1) and ($max: $viewport2) {
+			@content;
+		}
+	}
+}
+
+@mixin vendorize($name, $argument) {
+	-webkit-#{$name}: #{$argument};
+	-ms-#{$name}: #{$argument};
+	-moz-#{$name}: #{$argument};
+	-o-#{$name}: #{$argument};
+	#{$name}: #{$argument};
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+@function prefix($property, $prefixes: (webkit moz o ms)) {
+    $vendor-prefixed-properties: transform background-clip background-size;
+    $result: ();
+    @each $prefix in $prefixes {
+       @if index($vendor-prefixed-properties, $property) {
+         $property: -#{$prefix}-#{$property}
+       }
+       $result: append($result, $property);
+    }
+    @return $result;
+}
+
+@function trans-prefix($transition, $prefix: moz) {
+    $prefixed: ();
+    @each $trans in $transition {
+        $prop-name: nth($trans, 1);
+        $vendor-prop-name: prefix($prop-name, $prefix);
+        $prop-vals: nth($trans, 2);
+        $prefixed: append($prefixed, ($vendor-prop-name $prop-vals), comma);
+    }
+    
+    @return $prefixed;
+}
+
+
+@mixin transitionMultiple($values...) { 
+    $transitions: ();
+    @each $declaration in $values {
+        $prop: nth($declaration, 1);
+        $prop-opts: ();
+        $length: length($declaration);
+        @for $i from 2 through $length {
+            $prop-opts: append($prop-opts, nth($declaration, $i));   
+        }
+        $trans: ($prop, $prop-opts);
+        $transitions: append($transitions, $trans, comma);
+    }
+      
+    -webkit-transition: trans-prefix($transitions, webkit);
+    -moz-transition: trans-prefix($transitions, moz);
+    -o-transition: trans-prefix($transitions, o);
+    transition: $values;
+}
+
+@mixin retina () {
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		@content;
+	}
+}
+
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+	@-moz-keyframes $animation-name {
+		@content;
+	}
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};
+}
+
+@mixin imageizer($name) {
+
+	background-image:url(/assets/pic/#{$name}-large-o@1x.jpg);
+	@media only screen and (max-width:640px){
+		background-image:url(/assets/pic/#{$name}-small-o@1x.jpg);
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+			background-image:url(/assets/pic/#{$name}-small-r@2x.jpg);
+		}
+	}
+
+	@media only screen and (min-width:640px){
+		background-image:url(/assets/pic/#{$name}-medium-o@1x.jpg);
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+			background-image:url(/assets/pic/#{$name}-medium-r@2x.jpg);
+		}
+	}
+	@media only screen and (min-width:1024px){
+		background-image:url(/assets/pic/#{$name}-large-o@1x.jpg);
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+			background-image:url(/assets/pic/#{$name}-large-r@2x.jpg);
+		}
+	}
+}
+@mixin imageie($name){
+	background-image:url(/assets/pic/#{$name}-ie.jpg);
+}
+@mixin imageizerSmall($name){
+	background-image:url(/assets/pic/#{$name}-small-o@1x.jpg);
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		background-image:url(/assets/pic/#{$name}-small-r@2x.jpg);
+	}
+	@media only screen and (min-width:640px){
+		background-image:url(/assets/pic/#{$name}-medium-o@1x.jpg);
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+			background-image:url(/assets/pic/#{$name}-medium-r@2x.jpg);
+		}
+	}	
+}
+

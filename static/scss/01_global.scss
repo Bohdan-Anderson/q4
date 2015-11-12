@@ -1,0 +1,93 @@
+@import "settings";
+
+body,html{
+	padding: 0;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	color: $white;
+	font-size: 1em;
+
+	font-family: "Whitney SSm A", "Whitney SSm B",sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	// height: 100%;
+	// overflow: hidden;
+}
+
+body{
+	padding: $border_overlay_width 0 $border_overlay_width $border_overlay_width;
+	background-color: #000;
+	@include transition(opacity,0.5s,ease-in-out);
+	@include at-query ($max, $medium) {
+		padding: $border_overlay_width_medium 0 $border_overlay_width_medium $border_overlay_width_medium;
+	}
+}
+p{
+	margin: 0;
+	padding: 0;
+	font-size: 0.8rem;
+	line-height: 1rem;
+}
+h1,h2,h3,h4{
+	font-weight: 700;
+}
+
+.underline{
+	text-decoration: underline;
+}
+
+.not_loaded{
+	@include opacity(0);
+}
+
+#container{
+	// height: 100%;
+	#slides{
+		// height: 100%;
+		cursor: pointer;
+	}
+}
+
+#border_overlay{
+	> div{
+		background-color: $white;
+		position: fixed;
+	}
+
+	#border_overlay_top{
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: $border_overlay_width;
+		@include at-query ($max, $medium) {
+			height:$border_overlay_width_medium;
+		}
+	}
+	#border_overlay_left{
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: $border_overlay_width;
+		@include at-query ($max, $medium) {
+			width:$border_overlay_width_medium;
+		}
+	}
+	#border_overlay_bottom{
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: $border_overlay_width;
+		@include at-query ($max, $medium) {
+			height:$border_overlay_width_medium;
+		}
+	}	
+}
+
+a{
+	color: inherit;
+	text-decoration: none;
+}
